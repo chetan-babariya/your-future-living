@@ -53,59 +53,75 @@
                   </div>
 
                   <!-- Product Grid for Each Collection -->
-                  {% comment %}
-                    <div class="product-display-area" style="padding: 0 6rem 2rem 6rem;">
-                      {% for childlink in link.links %}
-                        {% assign collection = childlink.object %}
-                        {% if collection != blank and collection.products_count > 0 %}
-                          <div
-                            class="collection-details{% if forloop.first %} active{% endif %}"
-                            data-collection="{{ collection.handle }}"
-                          >
-                            <ul class="product-grid">
-                              {% for product in collection.products limit: 6 %}
-                                <li>
-                                  <img
-                                    src="{{ product.featured_image | image_url: width: 70 }}"
-                                    alt="{{ product.title }}"
-                                  >
-                                  <a href="{{ product.url }}">
-                                    <p>{{ product.title }}</p>
-                                  </a>
-                                </li>
-                              {% endfor %}
-                            </ul>
-                          </div>
-                        {% endif %}
-                      {% endfor %}
-                    </div>
-                  {% endcomment %}
-
-                  <div class="menu-product-grid-container">
-                    <div class="menu-product-grid">
-                      <div class="menu-product-item">
-                        <img
-                          src="//yourfutureliving.com/cdn/shop/files/6_c84ad0b0-7256-4ea5-8471-26d7b51a862f_400x.jpg?v=1748411165"
-                          alt="Product"
+                  <div class="product-display-area" style="padding: 0 6rem 2rem 6rem;">
+                    {% for childlink in link.links %}
+                      {% assign collection = childlink.object %}
+                      {% if collection != blank and collection.products_count > 0 %}
+                        <div
+                          class="collection-details{% if forloop.first %} active{% endif %}"
+                          data-collection="{{ collection.handle }}"
                         >
-                        <div class="menu-product-content">
-                          <a href="/products/floor-standing-smart-toilet-f9001b-e-elementary" class="sku" id="skuLink"
-                            ><span onclick="window.location.href='/products/floor-standing-smart-toilet-f9001b-e-elementary'"
-                              >Floor-standing Smart Toilet (F9001B-E) Elementary</span
-                            ></a
-                          >
-                          <a
-                            href="/products/floor-standing-smart-bidet-shower-toilet-f9001b-s-standard"
-                            class="sku"
-                            id="skuLink"
-                            ><span onclick="window.location.href='/products/floor-standing-smart-bidet-shower-toilet-f9001b-s-standard'"
-                              >Floor-standing Smart Bidet Shower Toilet (F9001B-S) Standard</span
-                            ></a
-                          >
-                          <a href="" class="sku" id="skuLink"><span onclick="window.location.href=''"></span></a>
+                          {% comment %} Tag to Image Map {% endcomment %}
+                          {%
+                            assign tag_image_map = {
+                            'group:F9001B': 'https://cdn.shopify.com/s/files/1/XXXX/group-f9001b.webp',
+                            'group:F8007V': 'https://cdn.shopify.com/s/files/1/XXXX/group-f8007v.webp',
+                            'group:F8023W': 'https://cdn.shopify.com/s/files/1/XXXX/group-f8023w.webp'
+                            }
+                          %}
+
+                          {% assign all_tags = '' | split: '' %}
+                          {% for product in collection.products %}
+                            {% for tag in product.tags %}
+                              {% if tag contains 'group:' %}
+                                {% assign all_tags = all_tags | push: tag %}
+                              {% endif %}
+                            {% endfor %}
+                          {% endfor %}
+
+                          {% assign unique_tags = all_tags | uniq | slice: 0, 6 %}
+
+                          <div class="grouped-products-grid">
+                            {% for tag in unique_tags %}
+                              {% assign tagged_products = '' | split: '' %}
+                              {% for product in collection.products %}
+                                {% if product.tags contains tag %}
+                                  {% assign tagged_products = tagged_products | push: product %}
+                                {% endif %}
+                              {% endfor %}
+
+                              {% assign group_products = tagged_products | slice: 0, 3 %}
+
+                              {% if group_products.size > 0 %}
+                                <div class="product-group">
+                                  {% assign group_image = tag_image_map[tag] %}
+                                  {% if group_image %}
+                                    <div class="group-image">
+                                      <img src="{{ group_image }}" alt="{{ tag | remove: 'group:' }}">
+                                    </div>
+                                  {% endif %}
+
+                                  <h4>{{ tag | remove: 'group:' }}</h4>
+                                  <div class="product-row">
+                                    {% for product in group_products %}
+                                      <div class="product-card">
+                                        <a href="{{ product.url }}">
+                                          <img
+                                            src="{{ product.featured_image | img_url: 'medium' }}"
+                                            alt="{{ product.title }}"
+                                          >
+                                          <p>{{ product.title }}</p>
+                                        </a>
+                                      </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                              {% endif %}
+                            {% endfor %}
+                          </div>
                         </div>
-                      </div>
-                    </div>
+                      {% endif %}
+                    {% endfor %}
                   </div>
                 </div>
               </div>
