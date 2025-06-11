@@ -3,7 +3,7 @@
 }
 
 .mega-menu__content {
-  background-color: rgb(var(--color-background));
+  background-color: #f8f8f8;
   border-left: 0;
   border-radius: 0;
   border-right: 0;
@@ -48,7 +48,7 @@
   border: 1px solid rgb(0, 0, 0, 0.1);
   font-size: 1.2rem;
   max-height: 4.6rem;
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
 .mega-menu__link--level-2 {
@@ -136,6 +136,7 @@
 }
 .view-all {
   padding: 3.2rem 0 6rem 0;
+  border-top: 1px solid rgb(0, 0, 0, 0.1);
 }
 .view-all a {
   font-weight: 600;
