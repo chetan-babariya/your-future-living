@@ -1,0 +1,75 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+  if section.settings.color_scheme == section.settings.section_color_scheme and section.settings.content_layout == 'no-overlap'
+    assign remove_color_classes = true
+  endif
+-%}
+
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="slider-content">
+      <h2 class="slider-heading">Your future living</h2>
+
+      <div class="slider-dec">
+        <p>
+          Where smart technology meets sustainability. discover how our innovative products are transforming modern
+          homes and businesses for a cleaner, smarter future.
+        </p>
+      </div>
+
+      <a href="/pages/about-us" class="slider-details-btn btn">About us</a>
+    </div>
+    <div class="slider-list splide">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide"><img src="slide1image.png"></li>
+          <li class="splide__slide"><img src="slide2image.png"></li>
+          <li class="splide__slide"><img src="slide3image.png"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Splide('.splide', {
+      type: 'loop',
+      perPage: 1,
+      autoplay: true,
+      arrows: true,
+      pagination: true,
+    }).mount();
+  });
+</script>
+{% schema %}
+{
+  "name": "About Slider",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "About Slider"
+    }
+  ]
+}
+{% endschema %}
