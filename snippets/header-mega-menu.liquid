@@ -31,6 +31,7 @@
                     id="collection-image"
                     src="{{ link.links[0].object.image | image_url }}"
                     alt="{{ link.links[0].title }}"
+                    loading="lazy"
                   >
                 </div>
 
@@ -105,13 +106,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="view-all">
-                    <a
-                      href="/collections/all"
-                      class="link link--text focus-inset"
-                      >View All Products
-                    </a>
                   </div>
                 </div>
               </div>
