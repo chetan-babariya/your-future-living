@@ -1,0 +1,56 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+    .meet-luxfresh-section {
+      display: flex;
+      justify-content: center;
+    }
+    .meet-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 81rem;
+      gap: 1.6rem;
+    }
+    .meet-inner img {
+      width: 20rem;
+    }
+    .meet-inner p {
+      line-height: 2.6rem;
+    }
+{%- endstyle -%}
+
+<section class="section-{{ section.id }} section-{{ section.id }}-padding {{ section.settings.section_color_scheme }}">
+  <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+    <div class="page-width meet-luxfresh-section">
+      <div class="meet-inner">
+        <img src="{{ 'LuxFresh_Colour_Plain1.png' |  asset_url }}" alt="">
+        <h2>Meet LuxFresh</h2>
+        <p>
+          Premium technology without the high price tag. Designed for comfort, efficiency and superior hygiene, our
+          luxury electric bidet toilet brings the future of smart bathrooms to your home or business.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Meet LuxFresh",
+  "tag": "section",
+  "class": "section",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,138 @@
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+    .eco-hero-section p {
+      line-height: 2.4rem;
+    }
+    .eco-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      padding: 6rem 1.6rem 0 1.6rem;
+    }
+    .sec-heading,
+    .sec-desc {
+      display: flex;
+      gap: 1.6rem;
+      flex-direction: column;
+    }
+    .sec-desc {
+      max-width: 59.7rem;
+    }
+    .sub-desc-v2 {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .eco-hero-inner {
+      padding-top: 4rem;
+    }
+    .eco-hero-text {
+      display: flex;
+    }
+    .inner-v1 {
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .inner-v2 {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .inner-v2 h1 {
+      padding-bottom: 1.6rem;
+    }
+    .inner-v2 .sub-desc-v2 {
+      max-width: 59.701rem;
+    }
+    .eco-hero-section .btn {
+      margin-top: 2.4rem;
+    }
+{% endstyle %}
+
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} eco-hero-section {{ section.settings.layout_style }}">
+  <div
+    class="eco-hero-inner page-width"
+    style="display: flex; justify-content: center; align-items: center; text-align: center;"
+  >
+    <div class="eco-hero-text inner-v2">
+      <h1>{{ section.settings.headline }}</h1>
+      <div class="sub-desc-v2">
+        <h5 style="color: {{ section.settings.subheading_color }};">
+          {{ section.settings.subheading }}
+        </h5>
+        <p>{{ section.settings.description1 }}</p>
+        <p>{{ section.settings.description2 }}</p>
+      </div>
+      {% unless template == 'index' %}
+        {% render 'btn', text: 'Shop Now', link: '/collections' %}
+      {% endunless %}
+    </div>
+  </div>
+  <div class="eco-hero-img">
+    {% if section.settings.hero_image != blank %}
+      <img src="{{ section.settings.hero_image | img_url: 'master' }}" alt="Hero Image">
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Eco Hero Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Main Headline",
+      "default": "The future of eco living"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Smarter. Greener. Coming soon."
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#225458"
+    },
+    {
+      "type": "textarea",
+      "id": "description1",
+      "label": "Content Text 1 (Use <strong> to bold)",
+      "default": "No more cold toilet seats. Unhygienic flush handles. Blinding lights in early hours. Or running out of loo roll."
+    },
+    {
+      "type": "textarea",
+      "id": "description2",
+      "label": "Content Text 2 (Use <strong> to bold)",
+      "default": "<strong>LuxFresh</strong> will change the way you think about bathrooms—combining high-tech comfort with hands-free hygiene and sustainable design."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Eco Hero Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,8 +1,6 @@
 {% comment %}
-  Renders a megamenu for the header.
-
-  Usage:
-  {% render 'header-mega-menu' %}
+  Mega menu with dynamic collection image and products
+  Usage: {% render 'header-mega-menu' %}
 {% endcomment %}
 
 <nav class="header__inline-menu">
@@ -16,57 +14,106 @@
                 id="HeaderMenu-{{ link.handle }}"
                 class="header__menu-item list-menu__item link focus-inset"
               >
-                <span
-                  {%- if link.child_active %}
-                    class="header__active-menu-item"
-                  {% endif %}
-                >
-                  {{- link.title | escape -}}
+                <span class="{% if link.child_active %}header__active-menu-item{% endif %}">
+                  {{ link.title | escape }}
                 </span>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
+                {{ 'icon-caret.svg' | inline_asset_content }}
               </summary>
+
               <div
                 id="MegaMenu-Content-{{ forloop.index }}"
                 class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
                 tabindex="-1"
               >
-                <ul
-                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
-                  role="list"
-                >
-                  {%- for childlink in link.links -%}
-                    <li>
-                      <a
-                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ childlink.url }}"
-                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
-                        {% if childlink.current %}
-                          aria-current="page"
-                        {% endif %}
+                <!-- Left Side Image -->
+                <div class="collection-img">
+                  <img
+                    id="collection-image"
+                    src="{{ link.links[0].object.image | image_url }}"
+                    alt="{{ link.links[0].title }}"
+                  >
+                </div>
+
+                <!-- Right Side: Categories + Products -->
+                <div class="category-menu-and-products" style="display: flex; flex-direction: column; gap: 4.2rem;">
+                  <!-- Collection Tabs -->
+                  <div class="category-menu">
+                    {% for childlink in link.links %}
+                      <button
+                        type="button"
+                        class="mega-menu__link{% if forloop.first %} active{% endif %}"
+                        data-image="{{ childlink.object.image | image_url }}"
+                        data-title="{{ childlink.title | escape }}"
+                        data-collection="{{ childlink.object.handle }}"
                       >
                         {{ childlink.title | escape }}
-                      </a>
-                      {%- if childlink.links != blank -%}
-                        <ul class="list-unstyled" role="list">
-                          {%- for grandchildlink in childlink.links -%}
-                            <li>
-                              <a
-                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                href="{{ grandchildlink.url }}"
-                                class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
-                                {% if grandchildlink.current %}
-                                  aria-current="page"
-                                {% endif %}
-                              >
-                                {{ grandchildlink.title | escape }}
-                              </a>
-                            </li>
-                          {%- endfor -%}
-                        </ul>
-                      {%- endif -%}
-                    </li>
-                  {%- endfor -%}
-                </ul>
+                      </button>
+                    {% endfor %}
+                  </div>
+
+                  <!-- Product Grid for Each Collection -->
+                  {% comment %}
+                    <div class="product-display-area" style="padding: 0 6rem 2rem 6rem;">
+                      {% for childlink in link.links %}
+                        {% assign collection = childlink.object %}
+                        {% if collection != blank and collection.products_count > 0 %}
+                          <div
+                            class="collection-details{% if forloop.first %} active{% endif %}"
+                            data-collection="{{ collection.handle }}"
+                          >
+                            <ul class="product-grid">
+                              {% for product in collection.products limit: 6 %}
+                                <li>
+                                  <img
+                                    src="{{ product.featured_image | image_url: width: 70 }}"
+                                    alt="{{ product.title }}"
+                                  >
+                                  <a href="{{ product.url }}">
+                                    <p>{{ product.title }}</p>
+                                  </a>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          </div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endcomment %}
+
+                  <div class="menu-product-grid-container">
+                    <div class="menu-product-grid">
+                      <div class="menu-product-item">
+                        <img
+                          src="//yourfutureliving.com/cdn/shop/files/6_c84ad0b0-7256-4ea5-8471-26d7b51a862f_400x.jpg?v=1748411165"
+                          alt="Product"
+                        >
+                        <div class="menu-product-content">
+                          <a href="/products/floor-standing-smart-toilet-f9001b-e-elementary" class="sku" id="skuLink"
+                            ><span onclick="window.location.href='/products/floor-standing-smart-toilet-f9001b-e-elementary'"
+                              >Floor-standing Smart Toilet (F9001B-E) Elementary</span
+                            ></a
+                          >
+                          <a
+                            href="/products/floor-standing-smart-bidet-shower-toilet-f9001b-s-standard"
+                            class="sku"
+                            id="skuLink"
+                            ><span onclick="window.location.href='/products/floor-standing-smart-bidet-shower-toilet-f9001b-s-standard'"
+                              >Floor-standing Smart Bidet Shower Toilet (F9001B-S) Standard</span
+                            ></a
+                          >
+                          <a href="" class="sku" id="skuLink"><span onclick="window.location.href=''"></span></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="view-all">
+                    <a
+                      href="/collections/all"
+                      class="link link--text focus-inset"
+                      >View All Products
+                    </a>
+                  </div>
+                </div>
               </div>
             </details>
           </header-menu>
@@ -79,12 +126,8 @@
               aria-current="page"
             {% endif %}
           >
-            <span
-              {%- if link.current %}
-                class="header__active-menu-item"
-              {% endif %}
-            >
-              {{- link.title | escape -}}
+            <span class="{% if link.current %}header__active-menu-item{% endif %}">
+              {{ link.title | escape }}
             </span>
           </a>
         {%- endif -%}
@@ -92,3 +135,34 @@
     {%- endfor -%}
   </ul>
 </nav>
+
+<!-- JavaScript to Handle Tab Switching -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.category-menu button');
+    const image = document.getElementById('collection-image');
+    const allDetails = document.querySelectorAll('.collection-details');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // Active button switch
+        buttons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Image update
+        const newSrc = btn.getAttribute('data-image');
+        const newAlt = btn.getAttribute('data-title');
+        if (newSrc) {
+          image.src = newSrc;
+          image.alt = newAlt;
+        }
+
+        // Product grid update
+        const handle = btn.getAttribute('data-collection');
+        allDetails.forEach((div) => {
+          div.classList.toggle('active', div.getAttribute('data-collection') === handle);
+        });
+      });
+    });
+  });
+</script>

@@ -1,0 +1,273 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "layout": "theme",
+  "sections": {
+    "hero_sec_C9hqdh": {
+      "type": "hero-sec",
+      "name": "Eco Hero Section",
+      "settings": {
+        "hero_image": "shopify://shop_images/Frame_2147226019_8f63c0e8-1fd3-4d25-871b-7d65fb057b12.png",
+        "headline": "Eco bathrooms made smart",
+        "subheading": "Smarter, greener, cleaner",
+        "subheading_color": "#16181d",
+        "description1": "Upgrade your bathroom with LuxFresh, the UK’s most advanced smart toilet with a built-in shower bidet. It is a sustainable, hygienic, and high-tech solution for homes, businesses, and wholesale.",
+        "description2": ""
+      }
+    },
+    "meet_luxfresh": {
+      "type": "meet-luxfresh",
+      "name": "Meet LuxFresh",
+      "settings": {}
+    },
+    "image_with_icon_text_gqtaRR": {
+      "type": "image-with-icon-text",
+      "blocks": {
+        "heading_icon_NWfrez": {
+          "type": "heading_icon",
+          "settings": {
+            "heading_icon": "shopify://shop_images/icon-ac.svg"
+          }
+        },
+        "heading_zgrRNw": {
+          "type": "heading",
+          "settings": {
+            "heading": "Live smart",
+            "heading_size": "h1"
+          }
+        },
+        "text_DA9MmB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Effortless comfort, cutting-edge innovation.</p>",
+            "text_style": "subtitle"
+          }
+        },
+        "text_BGG9Ke": {
+          "type": "text",
+          "settings": {
+            "text": "<p>With first-of-its-kind AI voice control, a sensor lid and soft night light, LuxFresh is built for ultimate comfort and convenience. The Japanese-style toilet’s suspended design makes cleaning easy, while the heated dryer and built-in aromatherapy create a spa-like experience. Smart, stylish and made for modern living.<br/><br/></p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_icon_NWfrez",
+        "heading_zgrRNw",
+        "text_DA9MmB",
+        "text_BGG9Ke"
+      ],
+      "name": "Image with icon and text",
+      "settings": {
+        "image": "shopify://shop_images/live-smar.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_icon_text_NBGLTy": {
+      "type": "image-with-icon-text",
+      "blocks": {
+        "heading_icon_NEJfVk": {
+          "type": "heading_icon",
+          "settings": {
+            "heading_icon": "shopify://shop_images/icon-green-leaf.svg"
+          }
+        },
+        "heading_WYrCFK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Live green",
+            "heading_size": "h1"
+          }
+        },
+        "text_RkjtgV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Reduce waste, lower costs and enjoy a cleaner future.</p>",
+            "text_style": "subtitle"
+          }
+        },
+        "text_LBeAf7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Toilet paper is a global issue. The world uses 27,000 trees worth per day. And just one roll gobbles up 1.3 kWh of electricity and 230 litres of water to be produced. Not to mention the cost, with UK families spending an average of £350 a year on it. </p>",
+            "text_style": "body"
+          }
+        },
+        "text_mVeBAD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>But with LuxFresh, you can put that money straight back in your pocket. The automatic shower and dryer system means you barely need to wipe, plus lower energy use, reduced water usage and long-term savings—all while delivering a superior clean.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_icon_NEJfVk",
+        "heading_WYrCFK",
+        "text_RkjtgV",
+        "text_LBeAf7",
+        "text_mVeBAD"
+      ],
+      "name": "Image with icon and text",
+      "settings": {
+        "image": "shopify://shop_images/live-green.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "image_with_icon_text_qXYYFB": {
+      "type": "image-with-icon-text",
+      "blocks": {
+        "heading_icon_hBg4Wk": {
+          "type": "heading_icon",
+          "settings": {
+            "heading_icon": "shopify://shop_images/icon-germ-free.svg"
+          }
+        },
+        "heading_rJAdM7": {
+          "type": "heading",
+          "settings": {
+            "heading": "Live germ-free",
+            "heading_size": "h1"
+          }
+        },
+        "text_7HbhcA": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Stay fresh, stay healthy, stay hands-free.</p>",
+            "text_style": "subtitle"
+          }
+        },
+        "text_ULBeGP": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Touchless technology eliminates the need for manual flushing and paper use, reducing the spread of germs in homes and public spaces. Without compromising on style. With a foot sensor flush and bubble shield to prevent splashing, our smart toilet is designed to offer a new standard of hygiene. Invest in your at-home wellness with LuxFresh.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_H4zNMW": {
+          "type": "button",
+          "settings": {
+            "button_label": "Learn more",
+            "button_link": "shopify://pages/home",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_icon_hBg4Wk",
+        "heading_rJAdM7",
+        "text_7HbhcA",
+        "text_ULBeGP",
+        "button_H4zNMW"
+      ],
+      "name": "Image with icon and text",
+      "settings": {
+        "image": "shopify://shop_images/live-germ-free.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 100
+      }
+    },
+    "features_QMEPBk": {
+      "type": "features",
+      "name": "Features Section",
+      "settings": {}
+    },
+    "image_with_text_9xtbKR": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_TaEhEi": {
+          "type": "heading",
+          "settings": {
+            "heading": "Wholesale",
+            "heading_size": "h1"
+          }
+        },
+        "text_e8pPYW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Buy in bulk or brand the products with our white label offering—ideal for retailers, property developers, and commercial spaces. With competitive discounts , your own brand can be created produced and delivered directly to your warehouse.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_dJ94zM": {
+          "type": "button",
+          "settings": {
+            "button_label": "Learn more",
+            "button_link": "shopify://pages/home",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_TaEhEi",
+        "text_e8pPYW",
+        "button_dJ94zM"
+      ],
+      "name": "wholesale",
+      "settings": {
+        "image": "shopify://shop_images/Frame_36_0cd96d70-7787-44ff-b72f-cf8828854917.png",
+        "height": "adapt",
+        "desktop_image_width": "large",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "hero_sec_C9hqdh",
+    "meet_luxfresh",
+    "image_with_icon_text_gqtaRR",
+    "image_with_icon_text_NBGLTy",
+    "image_with_icon_text_qXYYFB",
+    "features_QMEPBk",
+    "image_with_text_9xtbKR"
+  ]
+}

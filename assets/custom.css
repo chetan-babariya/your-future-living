@@ -1,0 +1,13 @@
+.btn {
+  padding: 1.85rem 2.4rem;
+  display: inline-block;
+  text-decoration: none;
+  max-height: 5.6rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  margin-top: 2.4rem;
+}
+.btn:hover {
+  background-color: #16181d;
+  transition: all 0.3s;
+}

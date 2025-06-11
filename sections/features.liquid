@@ -1,0 +1,94 @@
+{{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+    .features {
+        display: flex;
+        justify-content: space-between;
+        gap: 2.4rem;
+        padding: 10rem 0;
+    }
+    .feature-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .feature-box img {
+        width: 4.8rem;
+        height: 4.8rem;
+        margin-bottom: 2.4rem;
+    }
+    .feature-box .heading {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+    }
+{%- endstyle -%}
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+  if section.settings.color_scheme == section.settings.section_color_scheme and section.settings.content_layout == 'no-overlap'
+    assign remove_color_classes = true
+  endif
+-%}
+
+<div
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}"
+  style="background-color: #BEE0C7;"
+>
+  <div class="page-width">
+    <div class="features">
+      <div class="feature-box">
+        <img src="{{ 'truck.svg' |  asset_url }}" alt="">
+        <p class="heading">Free mainland UK Delivery</p>
+        <p>UK Mainland</p>
+      </div>
+      <div class="feature-box">
+        <img src="{{ 'card.svg' |  asset_url }}" alt="">
+        <p class="heading">Quick Payment</p>
+        <p>100% Secure Payment</p>
+      </div>
+      <div class="feature-box">
+        <img src="{{ 'certified.svg' |  asset_url }}" alt="">
+        <p class="heading">CE & RoHS certified</p>
+        <p>Conformity with EU safety</p>
+      </div>
+      <div class="feature-box">
+        <img src="{{ 'headphone.svg' |  asset_url }}" alt="">
+        <p class="heading">24/7 Online Support</p>
+        <p>Ready for you</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Features Section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Features Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
