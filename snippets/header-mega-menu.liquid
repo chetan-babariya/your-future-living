@@ -61,7 +61,7 @@
                         {% assign collection = childlink.object %}
                         {% if collection.products_count > 0 %}
                           {% assign group_tags = collection.tags | where: 'split', 'group:' %}
-                          {% for tag in collection.tags %}
+                          {% for tag in collection.tags limit: 6 %}
                             {% if tag contains 'group:' %}
                               {% assign group_name = tag | remove: 'group:' | strip %}
                               {% assign base_url = 'https://cdn.shopify.com/s/files/1/0680/2548/3317/files/' %}
@@ -79,7 +79,6 @@
                                     onerror="this.onerror=null;this.src='{{ fallback_url }}';"
                                     alt="{{ group_name }}"
                                     class="group-tag-image"
-                                    style="max-width: 100px; display: block; margin-bottom: 1rem;"
                                   >
                                 </picture>
                                 <div class="mega-menu__product-grid">
@@ -92,6 +91,9 @@
                                         </a>
                                       </div>
                                       {% assign count = count | plus: 1 %}
+                                      {% if count == 3 %}
+                                        {% break %}
+                                      {% endif %}
                                     {% endif %}
                                   {% endfor %}
                                 </div>
@@ -105,6 +107,9 @@
                         {% endif %}
                       </div>
                     {% endfor %}
+                  </div>
+                  <div class="view-all">
+                    <a href="/collections/all">View all products</a>
                   </div>
                 </div>
               </div>
