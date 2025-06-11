@@ -31,7 +31,6 @@
                     id="collection-image"
                     src="{{ link.links[0].object.image | image_url }}"
                     alt="{{ link.links[0].title }}"
-                    loading="lazy"
                   >
                 </div>
 
@@ -53,72 +52,58 @@
                   </div>
 
                   <!-- Product Grid for Each Collection -->
-                  <div class="product-display-area" style="padding: 0 6rem 2rem 6rem;">
+                  <div class="product-display-area">
                     {% for childlink in link.links %}
-                      {% assign collection = childlink.object %}
-                      {% if collection != blank and collection.products_count > 0 %}
-                        <div
-                          class="collection-details{% if forloop.first %} active{% endif %}"
-                          data-collection="{{ collection.handle }}"
-                        >
-                          {% comment %} Tag to Image Map {% endcomment %}
-                          {% assign tag_keys = 'group:F9001B,group:F8007V,group:F8023W' | split: ',' %}
-                          {% assign tag_values = 'https://cdn.shopify.com/s/files/1/XXXX/group-f9001b.webp,https://cdn.shopify.com/s/files/1/XXXX/group-f8007v.webp,https://cdn.shopify.com/s/files/1/XXXX/group-f8023w.webp'
-                            | split: ','
-                          %}
+                      <div
+                        class="product-container collection-details{% if forloop.first %} active{% endif %}"
+                        data-collection="{{ childlink.object.handle }}"
+                      >
+                        {% assign collection = childlink.object %}
+                        {% if collection.products_count > 0 %}
+                          {% assign group_tags = collection.tags | where: 'split', 'group:' %}
+                          {% for tag in collection.tags %}
+                            {% if tag contains 'group:' %}
+                              {% assign group_name = tag | remove: 'group:' | strip %}
+                              {% assign base_url = 'https://cdn.shopify.com/s/files/1/0680/2548/3317/files/' %}
+                              {% assign fallback_url = base_url | append: 'default.jpg' %}
 
-                          {% assign all_tags = '' | split: '' %}
-                          {% for product in collection.products %}
-                            {% for tag in product.tags %}
-                              {% if tag contains 'group:' %}
-                                {% assign all_tags = all_tags | push: tag %}
-                              {% endif %}
-                            {% endfor %}
-                          {% endfor %}
-
-                          {% assign unique_tags = all_tags | uniq | slice: 0, 6 %}
-
-                          <div class="grouped-products-grid">
-                            {% for tag in unique_tags %}
-                              {% assign tagged_products = '' | split: '' %}
-                              {% for product in collection.products %}
-                                {% if product.tags contains tag %}
-                                  {% assign tagged_products = tagged_products | push: product %}
-                                {% endif %}
-                              {% endfor %}
-
-                              {% assign group_products = tagged_products | slice: 0, 3 %}
-
-                              {% if group_products.size > 0 %}
-                                <div class="product-group">
-                                  {% assign tag_index = tag_keys | index_of: tag %}
-                                  {% assign group_image = tag_values[tag_index] %}
-                                  {% if group_image %}
-                                    <div class="group-image">
-                                      <img src="{{ group_image }}" alt="{{ tag | remove: 'group:' }}">
-                                    </div>
-                                  {% endif %}
-
-                                  <h4>{{ tag | remove: 'group:' }}</h4>
-                                  <div class="product-row">
-                                    {% for product in group_products %}
-                                      <div class="product-card">
+                              {% assign jpg_url = base_url | append: group_name | append: '.jpg' %}
+                              {% assign png_url = base_url | append: group_name | append: '.png' %}
+                              {% assign webp_url = base_url | append: group_name | append: '.webp' %}
+                              <div class="group-tag-products" data-group="{{ group_name }}">
+                                <picture>
+                                  <source srcset="{{ webp_url }}" type="image/webp">
+                                  <source srcset="{{ png_url }}" type="image/png">
+                                  <img
+                                    src="{{ jpg_url }}"
+                                    onerror="this.onerror=null;this.src='{{ fallback_url }}';"
+                                    alt="{{ group_name }}"
+                                    class="group-tag-image"
+                                    style="max-width: 100px; display: block; margin-bottom: 1rem;"
+                                  >
+                                </picture>
+                                <div class="mega-menu__product-grid">
+                                  {% assign count = 0 %}
+                                  {% for product in collection.products %}
+                                    {% if product.tags contains tag %}
+                                      <div class="mega-menu__product-item">
                                         <a href="{{ product.url }}">
-                                          <img
-                                            src="{{ product.featured_image | img_url: 'medium' }}"
-                                            alt="{{ product.title }}"
-                                          >
-                                          <p>{{ product.title }}</p>
+                                          <span>{{ product.title }}</span>
                                         </a>
                                       </div>
-                                    {% endfor %}
-                                  </div>
+                                      {% assign count = count | plus: 1 %}
+                                    {% endif %}
+                                  {% endfor %}
                                 </div>
-                              {% endif %}
-                            {% endfor %}
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                        {% else %}
+                          <div class="mega-menu__no-products">
+                            {{ 'collections.general.no_matches' | t }}
                           </div>
-                        </div>
-                      {% endif %}
+                        {% endif %}
+                      </div>
                     {% endfor %}
                   </div>
                 </div>
