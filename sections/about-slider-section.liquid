@@ -10,6 +10,13 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .slider-content {
+    display: flex;
+  }
+  .splider-list img {
+    width:37rem;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -25,24 +32,26 @@
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
     <div class="slider-content">
-      <h2 class="slider-heading">Your future living</h2>
+      <div class="slider-detail">
+        <h2 class="slider-heading">Your future living</h2>
 
-      <div class="slider-dec">
-        <p>
-          Where smart technology meets sustainability. discover how our innovative products are transforming modern
-          homes and businesses for a cleaner, smarter future.
-        </p>
+        <div class="slider-dec">
+          <p>
+            Where smart technology meets sustainability. discover how our innovative products are transforming modern
+            homes and businesses for a cleaner, smarter future.
+          </p>
+        </div>
+
+        <a href="/pages/about-us" class="slider-details-btn btn">About us</a>
       </div>
-
-      <a href="/pages/about-us" class="slider-details-btn btn">About us</a>
-    </div>
-    <div class="slider-list splide">
-      <div class="splide__track">
-        <ul class="splide__list">
-          <li class="splide__slide"><img src="slide1image.png"></li>
-          <li class="splide__slide"><img src="slide2image.png"></li>
-          <li class="splide__slide"><img src="slide3image.png"></li>
-        </ul>
+      <div class="slider-list splide">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide"><img src="{{'slide1image.png' |  asset_url}}"></li>
+            <li class="splide__slide"><img src="{{'slide2image.png' |  asset_url}}"></li>
+            <li class="splide__slide"><img src="{{'slide3image.png' | asset_url}}"></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
