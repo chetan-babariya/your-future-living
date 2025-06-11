@@ -62,12 +62,9 @@
                           data-collection="{{ collection.handle }}"
                         >
                           {% comment %} Tag to Image Map {% endcomment %}
-                          {%
-                            assign tag_image_map = {
-                            'group:F9001B': 'https://cdn.shopify.com/s/files/1/XXXX/group-f9001b.webp',
-                            'group:F8007V': 'https://cdn.shopify.com/s/files/1/XXXX/group-f8007v.webp',
-                            'group:F8023W': 'https://cdn.shopify.com/s/files/1/XXXX/group-f8023w.webp'
-                            }
+                          {% assign tag_keys = 'group:F9001B,group:F8007V,group:F8023W' | split: ',' %}
+                          {% assign tag_values = 'https://cdn.shopify.com/s/files/1/XXXX/group-f9001b.webp,https://cdn.shopify.com/s/files/1/XXXX/group-f8007v.webp,https://cdn.shopify.com/s/files/1/XXXX/group-f8023w.webp'
+                            | split: ','
                           %}
 
                           {% assign all_tags = '' | split: '' %}
@@ -94,7 +91,8 @@
 
                               {% if group_products.size > 0 %}
                                 <div class="product-group">
-                                  {% assign group_image = tag_image_map[tag] %}
+                                  {% assign tag_index = tag_keys | index_of: tag %}
+                                  {% assign group_image = tag_values[tag_index] %}
                                   {% if group_image %}
                                     <div class="group-image">
                                       <img src="{{ group_image }}" alt="{{ tag | remove: 'group:' }}">
