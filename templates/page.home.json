@@ -259,6 +259,11 @@
         "padding_bottom": 0,
         "custom_class": ""
       }
+    },
+    "about_slider_section_bFae6D": {
+      "type": "about-slider-section",
+      "name": "About Slider",
+      "settings": {}
     }
   },
   "order": [
@@ -268,6 +273,7 @@
     "image_with_icon_text_NBGLTy",
     "image_with_icon_text_qXYYFB",
     "features_QMEPBk",
-    "image_with_text_9xtbKR"
+    "image_with_text_9xtbKR",
+    "about_slider_section_bFae6D"
   ]
 }
