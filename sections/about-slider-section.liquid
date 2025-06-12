@@ -13,9 +13,14 @@
 
   .slider-content {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  .splider-list img {
+  .splide__list img {
     width:37rem;
+  }
+  .splide {
+    width: calc(100% - 490px);
   }
 {%- endstyle -%}
 
@@ -32,24 +37,28 @@
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
     <div class="slider-content">
+      <!-- Static Left Side -->
       <div class="slider-detail">
-        <h2 class="slider-heading">Your future living</h2>
+        <h2 class="slider-heading">{{ section.settings.heading }}</h2>
 
         <div class="slider-dec">
-          <p>
-            Where smart technology meets sustainability. discover how our innovative products are transforming modern
-            homes and businesses for a cleaner, smarter future.
-          </p>
+          <p>{{ section.settings.description }}</p>
         </div>
 
-        <a href="/pages/about-us" class="slider-details-btn btn">About us</a>
+        <a href="{{ section.settings.button_link }}" class="slider-details-btn btn">
+          {{ section.settings.button_label }}
+        </a>
       </div>
-      <div class="slider-list splide">
+
+      <!-- Splide Slider -->
+      <div class="slider-list splide" id="splide-{{ section.id }}">
         <div class="splide__track">
           <ul class="splide__list">
-            <li class="splide__slide"><img src="{{'slide1image.png' |  asset_url}}"></li>
-            <li class="splide__slide"><img src="{{'slide2image.png' |  asset_url}}"></li>
-            <li class="splide__slide"><img src="{{'slide3image.png' | asset_url}}"></li>
+            {% for block in section.blocks %}
+              <li class="splide__slide">
+                <img src="{{ block.settings.image | image_url: width: 900 }}" alt="Slide image" loading="lazy">
+              </li>
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -58,12 +67,11 @@
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    new Splide('.splide', {
+    new Splide('#splide-{{ section.id }}', {
       type: 'loop',
       perPage: 1,
-      autoplay: true,
-      arrows: true,
       pagination: true,
+      arrows: false,
     }).mount();
   });
 </script>
