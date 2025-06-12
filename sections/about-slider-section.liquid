@@ -1,51 +1,36 @@
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
-  }
-{%- endstyle -%}
 
-<style>
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+    .slider-section {
+    padding: 40px 0;
+  }
   .slider-content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 40px;
-    flex-wrap: wrap;
   }
-
   .slider-detail {
     flex: 1;
-    max-width: 40%;
   }
-
-  .slider-heading {
-    font-size: 48px;
-    margin-bottom: 20px;
-  }
-
-  .slider-dec p {
-    font-size: 18px;
-    margin-bottom: 30px;
-  }
-
   .slider-list {
-    flex: 1;
-    max-width: 55%;
+    flex: 1.5;
   }
-
   .splide__slide img {
     width: 100%;
+    height: auto;
     border-radius: 10px;
   }
-</style>
+{%- endstyle -%}
 
 {%- liquid
   assign fetch_priority = 'auto'
@@ -60,27 +45,25 @@
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
     <div class="slider-content">
-      <!-- Static Left Side -->
       <div class="slider-detail">
         <h2 class="slider-heading">{{ section.settings.heading }}</h2>
-
         <div class="slider-dec">
           <p>{{ section.settings.description }}</p>
         </div>
-
         <a href="{{ section.settings.button_link }}" class="slider-details-btn btn">
           {{ section.settings.button_label }}
         </a>
       </div>
 
-      <!-- Splide Slider -->
-      <div class="slider-list splide" id="splide-{{ section.id }}">
+      <div class="slider-list splide">
         <div class="splide__track">
           <ul class="splide__list">
             {% for block in section.blocks %}
-              <li class="splide__slide">
-                <img src="{{ block.settings.image | image_url: width: 900 }}" alt="Slide image" loading="lazy">
-              </li>
+              {% if block.settings.image %}
+                <li class="splide__slide">
+                  <img src="{{ block.settings.image | image_url: width: 800 }}" alt="Slide {{ forloop.index }}">
+                </li>
+              {% endif %}
             {% endfor %}
           </ul>
         </div>
@@ -88,56 +71,65 @@
     </div>
   </div>
 </div>
-<script>
+{% javascript %}
   document.addEventListener('DOMContentLoaded', function () {
-    new Splide('#splide-{{ section.id }}', {
+    var splide = new Splide('.splide', {
       type: 'loop',
-      perPage: 1,
-      pagination: true,
+      perPage: 2,
+      perMove: 1,
+      gap: '1rem',
       arrows: false,
-    }).mount();
+      rewind: true,
+      pagination: true,
+      breakpoints: {
+        989: { perPage: 1 },
+        767: { perPage: 2 },
+        490: { perPage: 1 },
+      },
+    });
+
+    // Numbered buttons
+    splide.on('pagination:mounted', function (data) {
+      data.items.forEach(function (item, index) {
+        item.button.textContent = index + 1;
+      });
+    });
+
+    splide.mount();
   });
-</script>
+{% endjavascript %}
 {% schema %}
 {
-  "name": "Image Slider with Text",
-  "tag": "section",
-  "class": "image-slider-section",
+  "name": "Splide Image Slider",
   "settings": [
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "Your future living"
+      "default": "Your future living",
+      "label": "Heading"
     },
     {
       "type": "textarea",
       "id": "description",
-      "label": "Description",
-      "default": "Where smart technology meets sustainability. Discover how our innovative products are transforming modern homes and businesses for a cleaner, smarter future."
+      "default": "Where smart technology meets sustainability...",
+      "label": "Description"
     },
     {
       "type": "text",
       "id": "button_label",
-      "label": "Button label",
-      "default": "About us"
+      "default": "About us",
+      "label": "Button text"
     },
     {
       "type": "url",
       "id": "button_link",
       "label": "Button link"
-    },
-    {
-      "type": "color_scheme",
-      "id": "section_color_scheme",
-      "label": "Color scheme",
-      "default": "background-1"
     }
   ],
   "blocks": [
     {
-      "type": "slide",
-      "name": "Slide",
+      "type": "image_slide",
+      "name": "Slide Image",
       "settings": [
         {
           "type": "image_picker",
@@ -150,8 +142,19 @@
   "max_blocks": 10,
   "presets": [
     {
-      "name": "Image Slider with Text",
-      "category": "Custom"
+      "name": "Splide Image Slider",
+      "category": "Media",
+      "blocks": [
+        {
+          "type": "image_slide"
+        },
+        {
+          "type": "image_slide"
+        },
+        {
+          "type": "image_slide"
+        }
+      ]
     }
   ]
 }
