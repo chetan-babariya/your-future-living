@@ -1,34 +1,87 @@
 {%- style -%}
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-    }
+       .section-{{ section.id }}-padding {
+         padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+         padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+       }
 
-    @media screen and (min-width: 750px) {
-      .section-{{ section.id }}-padding {
-        padding-top: {{ section.settings.padding_top }}px;
-        padding-bottom: {{ section.settings.padding_bottom }}px;
-      }
-    }
-    .slider-section {
-    padding: 40px 0;
-  }
-  .slider-content {
+       @media screen and (min-width: 750px) {
+         .section-{{ section.id }}-padding {
+           padding-top: {{ section.settings.padding_top }}px;
+           padding-bottom: {{ section.settings.padding_bottom }}px;
+         }
+       }
+       .slider-section {
+       padding: 10rem 0;
+       background-color: #225458;
+       color: #ffffff;
+     }
+     .slider-content {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       gap: 10rem;
+     }
+     .slider-detail {
+       width:37.5rem;
+       flex-shrink: 0;
+     }
+     .slider-heading {
+       color: #ffffff;
+       margin-bottom : 1.6rem;
+     }
+     .slider-desc {
+       line-height: 2.4rem;
+     }
+     .splide__slide img {
+       width: 100%;
+       height: auto;
+     }
+     .splide__track {
+       padding-bottom: 9.6rem;
+     }
+     .slider-details-btn {
+       margin-top: 2.4rem;
+       background-color: #ffffff;
+       color: #000000;
+       min-width: 15rem;
+     }
+     .slider-details-btn:hover {
+       color: #ffffff;
+     }
+     .slider-content .splide__pagination {
+       bottom: 0;
+       justify-content: start;
+     }
+    .splide__pagination__page {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #fff;
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-weight: 600;
+    height: 4rem;
+    width: 4rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
+    justify-content: center;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-sizing: border-box;
+    opacity: 1;
+    margin:0 1.2rem 0 0;
   }
-  .slider-detail {
-    flex: 1;
-  }
-  .slider-list {
-    flex: 1.5;
-  }
-  .splide__slide img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+  .splide__pagination__page.is-active {
+    border: 1px solid transparent;
+    transform: scale(1);
+    height: 4.8rem;
+    width: 4.8rem;
+    background: transparent;
+    background-image: linear-gradient(#225458, #225458),
+                      linear-gradient(to bottom right, #71C056, #EBEC89);
+
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: transform .2s linear;
   }
 {%- endstyle -%}
 
@@ -42,7 +95,7 @@
   endif
 -%}
 
-<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
+<div class="section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
     <div class="slider-content">
       <div class="slider-detail">
@@ -61,7 +114,7 @@
             {% for block in section.blocks %}
               {% if block.settings.image %}
                 <li class="splide__slide">
-                  <img src="{{ block.settings.image | image_url: width: 800 }}" alt="Slide {{ forloop.index }}">
+                  <img src="{{ block.settings.image | image_url }}" alt="Slide {{ forloop.index }}">
                 </li>
               {% endif %}
             {% endfor %}
@@ -71,36 +124,42 @@
     </div>
   </div>
 </div>
-{% javascript %}
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     var splide = new Splide('.splide', {
       type: 'loop',
       perPage: 2,
       perMove: 1,
-      gap: '1rem',
+      focus: 0,
+      gap: '2.4rem',
       arrows: false,
       rewind: true,
       pagination: true,
       breakpoints: {
-        989: { perPage: 1 },
-        767: { perPage: 2 },
-        490: { perPage: 1 },
+        989: {
+          perPage: 1,
+        },
+        767: {
+          perPage: 2,
+        },
+        490: {
+          perPage: 1,
+        },
       },
     });
-
-    // Numbered buttons
     splide.on('pagination:mounted', function (data) {
+      // Add numbers to the pagination buttons
       data.items.forEach(function (item, index) {
         item.button.textContent = index + 1;
       });
     });
-
     splide.mount();
   });
-{% endjavascript %}
+</script>
 {% schema %}
 {
   "name": "Splide Image Slider",
+  "class": "section slider-section",
   "settings": [
     {
       "type": "text",

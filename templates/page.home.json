@@ -262,8 +262,38 @@
     },
     "about_slider_section_bFae6D": {
       "type": "about-slider-section",
+      "blocks": {
+        "image_slide_Ky4Uya": {
+          "type": "image_slide",
+          "settings": {
+            "image": "shopify://shop_images/slide1image.png"
+          }
+        },
+        "image_slide_gxd4H9": {
+          "type": "image_slide",
+          "settings": {
+            "image": "shopify://shop_images/slide2image.png"
+          }
+        },
+        "image_slide_KzgCpy": {
+          "type": "image_slide",
+          "settings": {
+            "image": "shopify://shop_images/slide3image.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_slide_Ky4Uya",
+        "image_slide_gxd4H9",
+        "image_slide_KzgCpy"
+      ],
       "name": "About Slider",
-      "settings": {}
+      "settings": {
+        "heading": "Your future living",
+        "description": "Where smart technology meets sustainability. Discover how our innovative products are transforming modern homes and businesses for a cleaner, smarter future.",
+        "button_label": "About us",
+        "button_link": "shopify://pages/about-us"
+      }
     }
   },
   "order": [
