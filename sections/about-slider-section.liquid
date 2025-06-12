@@ -10,19 +10,51 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+{%- endstyle -%}
 
+<style>
   .slider-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
   }
-  .splide__list img {
-    width:37rem;
+
+  .slider-detail {
+    flex: 1;
+    max-width: 40%;
   }
-  .splide {
-    width: calc(100% - 490px);
+
+  .slider-heading {
+    font-size: 48px;
+    margin-bottom: 20px;
   }
-{%- endstyle -%}
+
+  .slider-dec p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .slider-details-btn {
+    background: white;
+    color: black;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  .slider-list {
+    flex: 1;
+    max-width: 55%;
+  }
+
+  .splide__slide img {
+    width: 100%;
+    border-radius: 10px;
+  }
+</style>
 
 {%- liquid
   assign fetch_priority = 'auto'
@@ -77,15 +109,58 @@
 </script>
 {% schema %}
 {
-  "name": "About Slider",
-  "class": "section",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
-  "settings": [],
+  "name": "Image Slider with Text",
+  "tag": "section",
+  "class": "image-slider-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your future living"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Where smart technology meets sustainability. Discover how our innovative products are transforming modern homes and businesses for a cleaner, smarter future."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "About us"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
   "presets": [
     {
-      "name": "About Slider"
+      "name": "Image Slider with Text",
+      "category": "Custom"
     }
   ]
 }
