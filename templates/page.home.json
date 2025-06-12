@@ -244,6 +244,7 @@
       ],
       "name": "wholesale",
       "settings": {
+        "custom_class": "wholesale-section",
         "image": "shopify://shop_images/Frame_36_0cd96d70-7787-44ff-b72f-cf8828854917.png",
         "height": "adapt",
         "desktop_image_width": "large",
@@ -256,8 +257,7 @@
         "section_color_scheme": "",
         "color_scheme": "",
         "padding_top": 0,
-        "padding_bottom": 0,
-        "custom_class": "wholesale-section"
+        "padding_bottom": 0
       }
     },
     "about_slider_section_bFae6D": {
