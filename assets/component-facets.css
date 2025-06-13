@@ -528,6 +528,7 @@
 
 .facet-checkbox > input[type='checkbox']:checked ~ .svg-wrapper > .icon-checkmark {
   visibility: visible;
+  color: #fff;
 }
 
 @media screen and (forced-colors: active) {
@@ -1254,4 +1255,8 @@ input.mobile-facets__checkbox {
   .facets-vertical .active-facets__button-remove {
     padding: 0 1rem 1rem;
   }
+}
+.facets-vertical .facet-checkbox.active input[type='checkbox'] {
+  background-color: #225458;
+  border: none;
 }
