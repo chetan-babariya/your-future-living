@@ -22,6 +22,7 @@ button {
 }
 .card__information {
   display: flex;
+  gap: 2rem;
 }
 .card__information .quick-add__submit {
   background-color: #225458;

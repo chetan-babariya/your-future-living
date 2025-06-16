@@ -1,0 +1,43 @@
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .review-section {
+    background-color: #2E2E2E;
+  }
+{% endstyle %}
+
+<div
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} eco-hero-section {{ section.settings.layout_style }}"
+>
+  <div class="review-sec">
+    <div class="reiview-main">a</div>
+    <div class="reiview-sub">
+      <div class="sub-rev1">b</div>
+      <div class="sub-rev2">c</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Reiview Section",
+  "tag": "section",
+  "class": "review-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Review Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
