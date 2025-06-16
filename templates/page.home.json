@@ -214,7 +214,20 @@
     "review_section_kc9C8g": {
       "type": "review-section",
       "name": "Review Section",
-      "settings": {}
+      "settings": {
+        "main_review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.",
+        "main_name": "James R",
+        "main_product": "F8007V",
+        "main_avatar": "shopify://shop_images/Ellipse_1.png",
+        "sub1_review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.",
+        "sub1_name": "James R",
+        "sub1_product": "F8007V",
+        "sub1_avatar": "shopify://shop_images/Ellipse_1.png",
+        "sub2_review": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.",
+        "sub2_name": "James R",
+        "sub2_product": "F8007V",
+        "sub2_avatar": "shopify://shop_images/Ellipse_1.png"
+      }
     },
     "image_with_text_9xtbKR": {
       "type": "image-with-text",

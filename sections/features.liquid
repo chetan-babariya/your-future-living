@@ -1,39 +1,44 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+      .features {
+          display: flex;
+          justify-content: space-between;
+          gap: 2.4rem;
+          padding: 10rem 0;
+      }
+      @media screen and (max-width: 749px) {
+    .features {
+          flex-direction: column;
     }
   }
-    .features {
-        display: flex;
-        justify-content: space-between;
-        gap: 2.4rem;
-        padding: 10rem 0;
-    }
-    .feature-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .feature-box img {
-        width: 4.8rem;
-        height: 4.8rem;
-        margin-bottom: 2.4rem;
-    }
-    .feature-box .heading {
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 1.2rem;
-    }
+      .feature-box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+      }
+      .feature-box img {
+          width: 4.8rem;
+          height: 4.8rem;
+          margin-bottom: 2.4rem;
+      }
+      .feature-box .heading {
+          font-size: 2rem;
+          font-weight: 600;
+          margin-bottom: 1.2rem;
+      }
 {%- endstyle -%}
 
 {%- liquid

@@ -14,8 +14,18 @@
 .wholesale-section {
   background-color: #f2f4f3;
 }
-.card__custom_detail .card__heading {
-  font-size: 1.6rem;
+.wholesale-section .image-with-text__content {
+  padding: 6rem;
+}
+@media screen and (max-width: 768px) {
+  .wholesale-section .image-with-text__content {
+    padding: 3rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  .wholesale-section .image-with-text__content {
+    padding: 2rem;
+  }
 }
 button {
   text-wrap: nowrap;

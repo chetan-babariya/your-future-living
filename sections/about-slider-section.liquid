@@ -25,6 +25,23 @@
        width:37.5rem;
        flex-shrink: 0;
      }
+     @media screen and (max-width: 769px) {
+      .slider-content {
+        flex-wrap: wrap;
+        gap: 4.8rem;
+        justify-content: center;
+      }
+       .slider-detail {
+         width: 80%;
+         text-align: center;
+       }
+
+     }
+     @media screen and (max-width: 490px) {
+       .slider-detail {
+         width: 100%;
+       }
+     }
      .slider-heading {
        color: #ffffff;
        margin-bottom : 1.6rem;
@@ -137,7 +154,7 @@
       pagination: true,
       breakpoints: {
         989: {
-          perPage: 1,
+          perPage: 2,
         },
         767: {
           perPage: 2,
