@@ -1,28 +1,125 @@
 {% style %}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
-  }
-  .review-section {
-    background-color: #2E2E2E;
-  }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+    .review-section {
+      background-color: #2E2E2E;
+    }
+
+    .review-sec {
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      padding: 10rem 0;
+      gap: 12rem;
+    }
+    .review-main {
+      align-items: center;
+      max-width: 73.4rem;
+      margin: 0 auto;
+      gap: 3.2rem;
+    }
+    .review-main p {
+      font-size: 3rem;
+      line-height: 4rem;
+    }
+    .review-div {
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+    }
+    .review-sub {
+      display: flex;
+      justify-content: space-between;
+      gap: 2.4rem;
+    }
+    .sub-rev1,
+    .sub-rev2 {
+      max-width: 47rem;
+  text-align: start;
+      gap: 4.2rem;
+    }
+    .sub-rev1 p,
+    .sub-rev2 p {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+    .reviewer {
+      display: flex;
+      align-items: center;
+    }
+    .reviewer img {
+      height: 3.2rem;
+      width: 3.2rem;
+      margin-right: 1.6rem;
+      border-radius: 50%;
+    }
+    .reviewer strong {
+      font-weight: 600;
+      margin-right: 0.8rem;
+    }
+    .reviewer span {
+      line-height: 2.4rem;
+    }
 {% endstyle %}
 
 <div
-  class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} eco-hero-section {{ section.settings.layout_style }}"
+  class="review-section section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} {{ section.settings.layout_style }}"
 >
-  <div class="review-sec">
-    <div class="reiview-main">a</div>
-    <div class="reiview-sub">
-      <div class="sub-rev1">b</div>
-      <div class="sub-rev2">c</div>
+  <div class="page-width">
+    <div class="review-sec">
+      <div class="review-main review-div">
+        <p>“{{ section.settings.main_review }}”</p>
+        <div
+          class="reviewer"
+        >
+          <img
+            src="{{ section.settings.main_avatar | img_url: '32x32' }}"
+            alt="Reviewer avatar"
+          >
+          <span
+            ><strong>{{ section.settings.main_name }}</strong>Purchased {{ section.settings.main_product }}
+          </span>
+        </div>
+      </div>
+      <div class="review-sub">
+        <div class="sub-rev1 review-div">
+          <p>“{{ section.settings.sub1_review }}”</p>
+          <div
+            class="reviewer"
+          >
+            <img
+              src="{{ section.settings.sub1_avatar | img_url: '32x32' }}"
+              alt="Reviewer avatar"
+            >
+            <span
+              ><strong>{{ section.settings.sub1_name }}</strong>Purchased {{ section.settings.sub1_product }}
+            </span>
+          </div>
+        </div>
+        <div class="sub-rev2 review-div">
+          <p>“{{ section.settings.sub2_review }}”</p>
+          <div
+            class="reviewer"
+          >
+            <img
+              src="{{ section.settings.sub2_avatar | img_url: '32x32' }}"
+              alt="Reviewer avatar"
+            >
+            <span
+              ><strong>{{ section.settings.sub2_name }}</strong>Purchased {{ section.settings.sub2_product }}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -32,7 +129,77 @@
   "name": "Reiview Section",
   "tag": "section",
   "class": "review-section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "main_review",
+      "label": "Main Review",
+      "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley."
+    },
+    {
+      "type": "text",
+      "id": "main_name",
+      "label": "Main Reviewer Name",
+      "default": "James R"
+    },
+    {
+      "type": "text",
+      "id": "main_product",
+      "label": "Main Product ID",
+      "default": "F8007V"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_avatar",
+      "label": "Main Reviewer Avatar"
+    },
+    {
+      "type": "textarea",
+      "id": "sub1_review",
+      "label": "Sub Review",
+      "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley."
+    },
+    {
+      "type": "text",
+      "id": "sub1_name",
+      "label": "Sub Reviewer Name",
+      "default": "James R"
+    },
+    {
+      "type": "text",
+      "id": "sub1_product",
+      "label": "Sub Product ID",
+      "default": "F8007V"
+    },
+    {
+      "type": "image_picker",
+      "id": "sub1_avatar",
+      "label": "Sub Reviewer Avatar"
+    },
+    {
+      "type": "textarea",
+      "id": "sub2_review",
+      "label": "Sub Review",
+      "default": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley."
+    },
+    {
+      "type": "text",
+      "id": "sub2_name",
+      "label": "Sub Reviewer Name",
+      "default": "James R"
+    },
+    {
+      "type": "text",
+      "id": "sub2_product",
+      "label": "Sub Product ID",
+      "default": "F8007V"
+    },
+    {
+      "type": "image_picker",
+      "id": "sub2_avatar",
+      "label": "Sub Reviewer Avatar"
+    }
+  ],
   "presets": [
     {
       "name": "Review Section",
